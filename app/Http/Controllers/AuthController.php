@@ -32,7 +32,7 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/')
+            return redirect()->route('app')
                 ->with('success', 'Logged in successfully!');
         }
 
