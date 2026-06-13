@@ -373,6 +373,33 @@
                         </ul>
                     </div>
                 </li>
+
+                @auth
+                    @if (auth()->user()->isAdmin())
+                        <li>
+                            <a class="nav-link" data-bs-toggle="collapse" href="#adminUsersMenu">
+                                <i class="bi bi-people-fill"></i>
+                                <span>Users</span>
+                            </a>
+                            <div class="collapse" id="adminUsersMenu">
+                                <ul class="nav flex-column submenu">
+                                    <li>
+                                        <a class="nav-link" href="{{ route('admin.users.index') }}">
+                                            <i class="bi bi-list-ul"></i>
+                                            <span>List</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link" href="{{ route('admin.users.create') }}">
+                                            <i class="bi bi-plus-circle"></i>
+                                            <span>Add</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
+                @endauth
             </ul>
         </nav>
 

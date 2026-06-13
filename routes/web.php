@@ -12,6 +12,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Route::middleware(['web'])->group(function () {
         ->name('verification.verify');
 });
 
-Route::middleware(['web', 'auth', 'verified'])->group(function () {
+Route::middleware(['web', 'auth', 'verified', 'admin'])->group(function () {
 
     /*
     |--------------------------------------------------------------------------
@@ -67,6 +68,7 @@ Route::middleware(['web', 'auth', 'verified'])->group(function () {
     Route::resource('doctors', DoctorController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('appointments', AppointmentController::class);
+    Route::resource('admin/users', UserController::class)->names('admin.users');
 
     // AJAX routes for modal add
     Route::post('/doctors/ajax-store', [DoctorController::class, 'ajaxStore'])
